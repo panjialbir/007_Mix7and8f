@@ -14,14 +14,22 @@ class OrderViewModel : ViewModel(){
     private val _stateUI = MutableStateFlow(OrderUIState())
     val stateUI: StateFlow<OrderUIState> = _stateUI.asStateFlow()
 
-    fun updateData(jmlEsJumbo: Int, listContact: MutableList<String>) {
+    fun setJumlah(jmlEsJumbo: Int) {
         _stateUI.update { stateSaatIni ->
             stateSaatIni.copy(
                 jumlah = jmlEsJumbo,
-                harga = hitungHarga(jumlah = jmlEsJumbo),
-                name = listContact[0],
-                notlp = listContact[1],
-                almt = listContact[2]
+                harga = hitungHarga(jumlah = jmlEsJumbo)
+
+            )
+        }
+    }
+
+    fun setContact(ListContact: MutableList <String>){
+        _stateUI.update{stateSaatIni ->
+            stateSaatIni.copy(
+                name = ListContact[0],
+                notlp = ListContact[1],
+                almt = ListContact[2]
             )
         }
     }
